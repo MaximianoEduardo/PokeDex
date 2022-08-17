@@ -1,4 +1,8 @@
+import 'package:app_pokedex/bloc/pokedex_bloc.dart';
+import 'package:app_pokedex/data/repository.dart';
+import 'package:app_pokedex/screens/home/pokedex.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +28,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      home: BlocProvider(
+        create: (context) => PokedexBloc(PokemonRepository()),
+        child: Pokedex(),
+      ),
     );
   }
 }
