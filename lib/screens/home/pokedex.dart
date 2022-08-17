@@ -56,7 +56,7 @@ Widget getErrorWidget(error) {
 Widget getPokedexEmptyWidget(BuildContext context) {
   final cubit = context.watch<PokedexBloc>();
 
-  cubit.getPokemons();
+  cubit.ListPokemons();
 
   return const Text('vazio');
 }

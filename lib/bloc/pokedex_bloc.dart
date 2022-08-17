@@ -4,20 +4,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PokedexBloc extends Cubit<PokedexState> {
   final PokemonRepository _repository;
+  final List<Pokedex> pokemonsList = [];
 
   PokedexBloc(this._repository) : super(EmptyPokedex());
 
-  Future getPokemons() async {
+  ListPokemons() {
+    List generationI = List<int>.generate(151, (index) => index + 1);
+
+    generationI.map((e) => getPokemons(e.toString())).toList();
+  }
+
+  Future getPokemons(idPokemon) async {
     emit(LoadingPokemons());
 
     try {
-      final pokemon = await _repository.getPokemon('1');
+      final pokemon = await _repository.getPokemon(idPokemon.toString());
 
-      if (pokemon == null) {
-        emit(Error(message: "Dados Vazios"));
-      } else {
-        emit(AllPokemons(pokemon: pokemon));
-      }
+      pokemonsList.add(pokemon);
+
+      emit(AllPokemons(pokemon: pokemonsList));
+
+      // if (pokemon == null) {
+      //   emit(Error(message: "Dados Vazios"));
+      // } else {
+      //   emit(AllPokemons(pokemon: pokemon));
+      // }
     } on Exception catch (e) {
       emit(
         Error(
@@ -25,6 +36,8 @@ class PokedexBloc extends Cubit<PokedexState> {
         ),
       );
     }
+
+    throw Exception();
   }
 }
 
@@ -33,7 +46,7 @@ abstract class PokedexState {}
 class EmptyPokedex extends PokedexState {}
 
 class AllPokemons extends PokedexState {
-  final Pokedex pokemon;
+  final List<Pokedex> pokemon;
 
   AllPokemons({required this.pokemon});
 }

@@ -5,15 +5,13 @@ import 'package:app_pokedex/models/pokemon_info.dart';
 import '../service/http_service.dart';
 
 class PokemonRepository {
-  Future getPokemon(String query) async {
+  Future<Pokedex> getPokemon(String query) async {
     try {
       final response = await HttpService.getRequest(query);
 
       if (response.statusCode == 200) {
         final result = pokedexFromMap(response.body);
         return result;
-      } else {
-        return null;
       }
     } on SocketException catch (e) {
       throw e;
@@ -22,5 +20,7 @@ class PokemonRepository {
     } on FormatException catch (e) {
       throw e;
     }
+
+    throw Exception();
   }
 }
