@@ -22,7 +22,15 @@ class PokedexBloc extends Cubit<PokedexState> {
 
       pokemonsList.add(pokemon);
 
-      emit(AllPokemons(pokemon: pokemonsList));
+      var seen = <String>{};
+
+      List<Pokedex> uniquenum = pokemonsList
+          .where((pokemon) => seen.add(pokemon.id.toString()))
+          .toList();
+
+      uniquenum.sort((a, b) => a.id - b.id == 0 ? -1 : a.id - b.id);
+
+      emit(AllPokemons(pokemon: uniquenum));
 
       // if (pokemon == null) {
       //   emit(Error(message: "Dados Vazios"));
