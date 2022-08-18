@@ -5,7 +5,9 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import '../../bloc/pokedex_bloc.dart';
 
 class Pokedex extends StatefulWidget {
-  const Pokedex({Key? key}) : super(key: key);
+  const Pokedex({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Pokedex> createState() => _PokedexState();
@@ -14,29 +16,20 @@ class Pokedex extends StatefulWidget {
 class _PokedexState extends State<Pokedex> {
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<PokedexBloc>();
-
-    return BlocListener(
-      listener: (context, state) {
-        if (state is AllPokemons) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PokemonsList(
-                pokemon: state.pokemon,
-              ),
-            ),
-          );
+    return BlocBuilder<PokedexBloc, PokedexState>(
+      builder: (context, state) {
+        if (state is LoadingPokemons) {
+          getLoadingWidget();
+        } else if (state is Error) {
+          getErrorWidget('error');
+        } else if (state is EmptyPokedex) {
+          getPokedexEmptyWidget(context);
+        } else if (state is AllPokemons) {
+          final pokemon = state.pokemon;
+          return PokemonsList(pokemon: pokemon);
         }
+        return Container();
       },
-      bloc: cubit,
-      child: cubit.state is LoadingPokemons
-          ? getLoadingWidget()
-          : cubit.state is Error
-              ? getErrorWidget("Some Error")
-              : cubit.state is EmptyPokedex
-                  ? getPokedexEmptyWidget(context)
-                  : const Text('Void'),
     );
   }
 }
@@ -56,7 +49,7 @@ Widget getErrorWidget(error) {
 Widget getPokedexEmptyWidget(BuildContext context) {
   final cubit = context.watch<PokedexBloc>();
 
-  cubit.ListPokemons();
+  cubit.listPokemons();
 
   return const Text('vazio');
 }

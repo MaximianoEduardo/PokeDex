@@ -8,7 +8,7 @@ class PokedexBloc extends Cubit<PokedexState> {
 
   PokedexBloc(this._repository) : super(EmptyPokedex());
 
-  ListPokemons() {
+  listPokemons() {
     List generationI = List<int>.generate(151, (index) => index + 1);
 
     generationI.map((e) => getPokemons(e.toString())).toList();
@@ -36,8 +36,6 @@ class PokedexBloc extends Cubit<PokedexState> {
         ),
       );
     }
-
-    throw Exception();
   }
 }
 
