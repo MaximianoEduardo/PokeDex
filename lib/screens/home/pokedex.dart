@@ -1,3 +1,4 @@
+import 'package:app_pokedex/screens/details/pokemon.dart';
 import 'package:app_pokedex/screens/home/pokemons_list.dart';
 import 'package:flutter/material.dart';
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -26,7 +27,9 @@ class _PokedexState extends State<Pokedex> {
           getPokedexEmptyWidget(context);
         } else if (state is AllPokemons) {
           final pokemon = state.pokemon;
-          return PokemonsList(pokemon: pokemon);
+          return PokemonsList(
+            pokemon: pokemon,
+          );
         }
         return Container();
       },
