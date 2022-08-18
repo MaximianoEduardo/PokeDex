@@ -1,5 +1,6 @@
 import 'package:app_pokedex/bloc/pokedex_bloc.dart';
 import 'package:app_pokedex/data/repository.dart';
+import 'package:app_pokedex/routes/routes.dart';
 import 'package:app_pokedex/screens/home/pokedex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => PokedexBloc(PokemonRepository()),
-        child: Pokedex(),
+        child: const Routes(),
       ),
     );
   }
