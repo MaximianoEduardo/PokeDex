@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 Pokedex pokedexFromMap(String str) => Pokedex.fromMap(json.decode(str));
 
 String pokedexToMap(Pokedex data) => json.encode(data.toMap());
@@ -48,6 +50,10 @@ class Pokedex {
   final List<Stat> stats;
   final List<Type> types;
   final int weight;
+
+  List get typeString => _getTypes(types);
+
+  Color? get baseColor => _color(typeString[0]);
 
   factory Pokedex.fromMap(Map<String, dynamic> json) => Pokedex(
         abilities: List<Ability>.from(
@@ -302,6 +308,7 @@ class Sprites {
     required this.frontFemale,
     required this.frontShiny,
     required this.frontShinyFemale,
+    required this.other,
   });
 
   final String backDefault;
@@ -312,6 +319,7 @@ class Sprites {
   final dynamic frontFemale;
   final String frontShiny;
   final dynamic frontShinyFemale;
+  final Other other;
 
   factory Sprites.fromMap(Map<String, dynamic> json) => Sprites(
         backDefault: json["back_default"],
@@ -322,6 +330,7 @@ class Sprites {
         frontFemale: json["front_female"],
         frontShiny: json["front_shiny"],
         frontShinyFemale: json["front_shiny_female"],
+        other: Other.fromMap(json["other"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -702,4 +711,55 @@ class Type {
         "slot": slot,
         "type": type.toMap(),
       };
+}
+
+_color(typeString) {
+  switch (typeString) {
+    case 'bug':
+      return const Color.fromRGBO(139, 214, 116, 1);
+    case 'dark':
+      return const Color.fromRGBO(88, 87, 95, 1);
+    case 'dragon':
+      return const Color.fromRGBO(15, 106, 192, 1);
+    case 'electric':
+      return const Color.fromRGBO(242, 203, 85, 1);
+    case 'fairy':
+      return const Color.fromRGBO(235, 168, 195, 1);
+    case 'fighting':
+      return const Color.fromRGBO(235, 73, 113, 1);
+    case 'fire':
+      return const Color.fromRGBO(255, 167, 86, 1);
+    case 'flying':
+      return const Color.fromRGBO(116, 143, 201, 1);
+    case 'ghost':
+      return const Color.fromRGBO(133, 113, 190, 1);
+    case 'grass':
+      return const Color.fromRGBO(139, 190, 138, 1);
+    case 'ground':
+      return const Color.fromRGBO(247, 133, 81, 1);
+    case 'ice':
+      return const Color.fromRGBO(97, 206, 192, 1);
+    case 'normal':
+      return const Color.fromRGBO(181, 185, 196, 1);
+    case 'poison':
+      return const Color.fromRGBO(159, 110, 151, 1);
+    case 'psychic':
+      return const Color.fromRGBO(234, 93, 96, 1);
+    case 'rock':
+      return const Color.fromRGBO(186, 171, 130, 1);
+    case 'steel':
+      return const Color.fromRGBO(65, 125, 154, 1);
+    case 'water':
+      return const Color.fromRGBO(88, 171, 246, 1);
+    default:
+      return Colors.grey;
+  }
+}
+
+_getTypes(List<Type> types) {
+  final typelist = types.map((e) => e.type);
+
+  final typeString = typelist.map((e) => e.name).toList();
+
+  return typeString;
 }
