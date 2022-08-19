@@ -17,7 +17,9 @@ class PokemonsList extends StatelessWidget {
         title: Text(
           'Pokedex',
         ),
-        collapsedHeight: 300,
+        expandedHeight: 300,
+        collapsedHeight: 70,
+        pinned: true,
       ),
       SliverList(
         delegate: SliverChildListDelegate(
