@@ -28,10 +28,7 @@ class PokemonType extends StatelessWidget {
                       ),
                       child: Text(
                         capitalize(pokemonType.type.name),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                     ),
                   ),

@@ -1,7 +1,5 @@
-import 'package:app_pokedex/common/capitalize.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
 import 'package:app_pokedex/screens/details/pokemon.dart';
-import 'package:app_pokedex/screens/home/widgets/pokemon_type_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -68,7 +66,7 @@ class PokemonCard extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: 15,
+                top: 10,
                 right: 15,
                 child: CachedNetworkImage(
                   imageUrl: pokemon.sprites.other.officialArtwork.frontDefault,

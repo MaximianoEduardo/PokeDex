@@ -13,9 +13,10 @@ class PokemonsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(slivers: [
-      const SliverAppBar(
+      SliverAppBar(
         title: Text(
           'Pokedex',
+          style: Theme.of(context).textTheme.headline1,
         ),
         expandedHeight: 300,
         collapsedHeight: 70,

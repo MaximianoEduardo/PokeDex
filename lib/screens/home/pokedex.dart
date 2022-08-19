@@ -1,4 +1,3 @@
-import 'package:app_pokedex/screens/details/pokemon.dart';
 import 'package:app_pokedex/screens/home/pokemons_list.dart';
 import 'package:flutter/material.dart';
 import "package:flutter_bloc/flutter_bloc.dart";

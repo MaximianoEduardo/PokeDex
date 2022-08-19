@@ -28,6 +28,27 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
         fontFamily: 'sf-pro',
+        textTheme: const TextTheme(
+          headline1: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+          headline2: TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          subtitle1: TextStyle(
+            color: Color.fromRGBO(23, 23, 27, 0.6),
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+          ),
+          subtitle2: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 12,
+          ),
+        ),
       ),
       home: BlocProvider(
         create: (context) => PokedexBloc(PokemonRepository()),

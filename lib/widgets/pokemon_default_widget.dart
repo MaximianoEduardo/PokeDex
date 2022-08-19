@@ -20,10 +20,7 @@ class PokemonDefaultWidget extends StatelessWidget {
           children: [
             Text(
               '#${pokemon.id.toString()}',
-              style: const TextStyle(
-                color: Color.fromRGBO(23, 23, 27, 0.6),
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ],
         ),
@@ -33,11 +30,7 @@ class PokemonDefaultWidget extends StatelessWidget {
             children: [
               Text(
                 capitalize(pokemon.name),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headline2,
               ),
             ],
           ),

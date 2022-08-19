@@ -1,5 +1,6 @@
 import 'package:app_pokedex/common/capitalize.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
+import 'package:app_pokedex/screens/details/tabs/pokemon_about_tab.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_stats_tab.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -82,13 +83,7 @@ class _PokemonArgumentsState extends State<PokemonArguments> {
             ];
           },
           body: TabBarView(children: [
-            DecoratedBox(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
-              child: Container(
-                color: Colors.white,
-              ),
-            ),
+            PokemonAboutTab(pokemon: widget.pokemon),
             PokemonStatsTab(pokemon: widget.pokemon),
             Container(
               color: Colors.yellow,
