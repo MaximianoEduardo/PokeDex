@@ -18,61 +18,65 @@ class PokemonStatsTab extends StatelessWidget {
         horizontal: 40,
         vertical: 30,
       ),
-      child: Column(children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: Row(
-            children: [
-              Text(
-                'Base Stats',
-                style: TextStyle(
-                  color: pokemon.baseColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
+      child: ListView(
+          padding: const EdgeInsets.only(
+            top: 20,
           ),
-        ),
-        Column(
           children: [
-            ...pokemon.stats
-                .map((status) => PokemonStats(
-                      baseColor: pokemon.baseColor,
-                      status: status,
-                    ))
-                .toList()
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 50),
-          child: Column(
-            children: [
-              Row(
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: Row(
                 children: [
                   Text(
-                    'Type Defenses',
+                    'Base Stats',
                     style: TextStyle(
                       color: pokemon.baseColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Text(
-                        'The effectiveness of each type on ${pokemon.name}.'),
                   )
                 ],
               ),
-            ],
-          ),
-        )
-      ]),
+            ),
+            Column(
+              children: [
+                ...pokemon.stats
+                    .map((status) => PokemonStats(
+                          baseColor: pokemon.baseColor,
+                          status: status,
+                        ))
+                    .toList()
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Type Defenses',
+                        style: TextStyle(
+                          color: pokemon.baseColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Text(
+                            'The effectiveness of each type on ${pokemon.name}.'),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ]),
     );
   }
 }
