@@ -1,5 +1,7 @@
 import 'package:app_pokedex/common/capitalize.dart';
+import 'package:app_pokedex/data/repository.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
+import 'package:app_pokedex/models/pokemon_specie.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_about_tab.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_stats_tab.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -11,10 +13,12 @@ class PokemonArguments extends StatefulWidget {
   static const routeName = '/details';
 
   final Pokedex pokemon;
+  final PokemonRepository repository;
 
   const PokemonArguments({
     super.key,
     required this.pokemon,
+    required this.repository,
   });
 
   @override
@@ -83,7 +87,20 @@ class _PokemonArgumentsState extends State<PokemonArguments> {
             ];
           },
           body: TabBarView(children: [
-            PokemonAboutTab(pokemon: widget.pokemon),
+            FutureBuilder<PokemonSpecie>(
+              future: widget.repository.getPokemonSpecie(widget.pokemon.name),
+              builder: ((BuildContext context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done &&
+                    snapshot.hasData) {
+                  return PokemonAboutTab(
+                    pokemon: widget.pokemon,
+                    pokemonSpecie: snapshot.data!,
+                  );
+                }
+
+                return Container();
+              }),
+            ),
             PokemonStatsTab(pokemon: widget.pokemon),
             Container(
               color: Colors.yellow,
