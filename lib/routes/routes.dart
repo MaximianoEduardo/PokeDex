@@ -1,3 +1,4 @@
+import 'package:app_pokedex/data/repository.dart';
 import 'package:app_pokedex/screens/details/pokemon.dart';
 import 'package:app_pokedex/screens/home/pokedex.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class Routes extends StatelessWidget {
             builder: (BuildContext context) {
               return PokemonArguments(
                 pokemon: args.pokemon,
+                repository: PokemonRepository(),
               );
             },
           );

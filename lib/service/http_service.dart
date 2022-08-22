@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
 class HttpService {
-  static String baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  static String baseUrl = 'https://pokeapi.co/api/v2/';
 
   static Future<http.Response> getRequest(endPoint) async {
     http.Response response;
