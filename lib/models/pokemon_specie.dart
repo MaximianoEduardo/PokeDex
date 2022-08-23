@@ -43,7 +43,7 @@ class PokemonSpecie {
   final int baseHappiness;
   final int captureRate;
   final NameUrl color;
-  final List<dynamic> eggGroups;
+  final List<NameUrl> eggGroups;
   final EvolutionChain evolutionChain;
   final dynamic evolvesFromSpecies;
   final List<dynamic> flavorTextEntries;
@@ -72,7 +72,8 @@ class PokemonSpecie {
         baseHappiness: json["base_happiness"],
         captureRate: json["capture_rate"],
         color: NameUrl.fromMap(json["color"]),
-        eggGroups: List<dynamic>.from(json["egg_groups"].map((x) => x)),
+        eggGroups: List<NameUrl>.from(
+            json["egg_groups"].map((x) => NameUrl.fromMap(x))),
         evolutionChain: EvolutionChain.fromMap(json["evolution_chain"]),
         evolvesFromSpecies: json["evolves_from_species"],
         flavorTextEntries:

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app_pokedex/models/pokemon_evolution.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
 import 'package:app_pokedex/models/pokemon_specie.dart';
 
@@ -31,6 +32,25 @@ class PokemonRepository {
 
       if (response.statusCode == 200) {
         final result = pokemonSpecieFromMap(response.body);
+        return result;
+      }
+    } on SocketException catch (e) {
+      throw e;
+    } on HttpException catch (e) {
+      throw e;
+    } on FormatException catch (e) {
+      throw e;
+    }
+
+    throw Exception();
+  }
+
+  Future<PokemonEvolution> getPokemonEvolution(String query) async {
+    try {
+      final response = await HttpService.getRequest('evolution-chain/$query/');
+
+      if (response.statusCode == 200) {
+        final result = pokemonEvolutionFromMap(response.body);
         return result;
       }
     } on SocketException catch (e) {
