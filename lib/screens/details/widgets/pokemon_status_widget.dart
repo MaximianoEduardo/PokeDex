@@ -36,15 +36,16 @@ class PokemonStats extends StatelessWidget {
             style: const TextStyle(color: Color.fromRGBO(116, 116, 116, 1)),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            padding: const EdgeInsets.only(left: 4.0),
             child: SizedBox(
               width: 150,
               child: LinearPercentIndicator(
                 animation: false,
                 lineHeight: 4,
-                percent: (status.baseStat) / 100,
+                percent:
+                    status.baseStat > 100 ? 100 / 100 : (status.baseStat) / 100,
                 progressColor: baseColor,
-                backgroundColor: Colors.white.withOpacity(0.3),
+                //backgroundColor: Colors.white.withOpacity(0.3),
                 barRadius: const Radius.circular(15),
               ),
             ),

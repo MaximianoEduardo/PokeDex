@@ -41,7 +41,7 @@ class PokemonTraining extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Catch Rate',
                       style: TextStyle(
-                        color: Color.fromRGBO(116, 116, 118, 1),
+                        color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )),
@@ -50,7 +50,7 @@ class PokemonTraining extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Base Happiness',
                       style: TextStyle(
-                        color: Color.fromRGBO(116, 116, 118, 1),
+                        color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )),
@@ -59,7 +59,7 @@ class PokemonTraining extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Grow Rate',
                       style: TextStyle(
-                        color: Color.fromRGBO(116, 116, 118, 1),
+                        color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )),
@@ -89,7 +89,12 @@ class PokemonTraining extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(specie.growthRate.name),
+                    child: Text(
+                      specie.growthRate.name,
+                      style: const TextStyle(
+                        color: Color.fromRGBO(116, 116, 118, 1),
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -39,16 +39,16 @@ class PokemonData extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Height',
                       style: TextStyle(
-                        color: Color.fromRGBO(116, 116, 118, 1),
-                        fontSize: 16,
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
+                        fontSize: 16,
                       )),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Weight',
                       style: TextStyle(
-                        color: Color.fromRGBO(116, 116, 118, 1),
+                        color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )),
@@ -57,7 +57,7 @@ class PokemonData extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Abilities',
                       style: TextStyle(
-                        color: Color.fromRGBO(116, 116, 118, 1),
+                        color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )),
@@ -66,7 +66,7 @@ class PokemonData extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Weaknesses',
                       style: TextStyle(
-                        color: Color.fromRGBO(116, 116, 118, 1),
+                        color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )),

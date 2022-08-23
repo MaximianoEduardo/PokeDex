@@ -3,6 +3,7 @@ import 'package:app_pokedex/data/repository.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
 import 'package:app_pokedex/models/pokemon_specie.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_about_tab.dart';
+import 'package:app_pokedex/screens/details/tabs/pokemon_evolution_tab.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_stats_tab.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -88,22 +89,52 @@ class _PokemonArgumentsState extends State<PokemonArguments> {
           },
           body: TabBarView(children: [
             FutureBuilder<PokemonSpecie>(
-              future: widget.repository.getPokemonSpecie(widget.pokemon.name),
+              future: widget.repository.getPokemonSpecie(
+                widget.pokemon.id.toString(),
+              ),
               builder: ((BuildContext context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.hasData) {
+                if (snapshot.connectionState == ConnectionState.done) {
                   return PokemonAboutTab(
                     pokemon: widget.pokemon,
                     pokemonSpecie: snapshot.data!,
                   );
                 }
 
-                return Container();
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: Text('Carregando'),
+                  );
+                }
+
+                return Container(
+                  child: const Text('caiu aqui'),
+                );
               }),
             ),
             PokemonStatsTab(pokemon: widget.pokemon),
-            Container(
-              color: Colors.yellow,
+            FutureBuilder<PokemonSpecie>(
+              future: widget.repository.getPokemonSpecie(
+                widget.pokemon.id.toString(),
+              ),
+              builder: ((BuildContext context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return PokemonEvolutionTab(
+                    repository: widget.repository,
+                    pokemon: widget.pokemon,
+                    specie: snapshot.data!,
+                  );
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: Text('Carregando'),
+                  );
+                }
+
+                return Container(
+                  child: const Text('caiu aqui'),
+                );
+              }),
             ),
           ]),
         ),
