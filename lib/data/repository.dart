@@ -1,50 +1,66 @@
-import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:app_pokedex/common/failure.dart';
+import 'dart:io';
+
+import 'package:app_pokedex/models/pokemon_evolution.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
-import 'package:app_pokedex/models/pokemons.dart';
+import 'package:app_pokedex/models/pokemon_specie.dart';
 
-abstract class IPokemonRepository {
-  Future<List<Pokemon>> getAllPokemons();
-  Future<PokemonInfo> getPokemonsInfo(id);
-}
+import '../service/http_service.dart';
 
-class PokemonRepository implements IPokemonRepository {
-  final Dio dio;
-  final int id;
-
-  PokemonRepository(
-    this.id, {
-    required this.dio,
-  });
-
-  @override
-  Future<List<Pokemon>> getAllPokemons() async {
+class PokemonRepository {
+  Future<Pokedex> getPokemon(String query) async {
     try {
-      final response = await dio.get(
-        'https://raw.githubusercontent.com/MaximianoEduardo/PokeDex/main/lib/database/pokemons.json',
-      );
-      final json = jsonDecode(response.data) as Map<String, dynamic>;
-      final list = json['pokemons'] as List<dynamic>;
+      final response = await HttpService.getRequest('pokemon/$query');
 
-      return list.map((e) => Pokemon.fromMap(e)).toList();
-    } catch (e) {
-      throw Failure(message: 'Erro ao Carregar Dados');
+      if (response.statusCode == 200) {
+        final result = pokedexFromMap(response.body);
+        return result;
+      }
+    } on SocketException catch (e) {
+      throw e;
+    } on HttpException catch (e) {
+      throw e;
+    } on FormatException catch (e) {
+      throw e;
     }
+
+    throw Exception();
   }
 
-  @override
-  Future<PokemonInfo> getPokemonsInfo(id) async {
+  Future<PokemonSpecie> getPokemonSpecie(String query) async {
     try {
-      final response = await dio.get('https://pokeapi.co/api/v2/pokemon/$id/');
+      final response = await HttpService.getRequest('pokemon-species/$query');
 
-      final json = PokemonInfo.fromMap(response.data);
-
-      return json;
-    } catch (e) {
-      throw Failure(
-        message: 'Erro ao Carregar Dados',
-      );
+      if (response.statusCode == 200) {
+        final result = pokemonSpecieFromMap(response.body);
+        return result;
+      }
+    } on SocketException catch (e) {
+      throw e;
+    } on HttpException catch (e) {
+      throw e;
+    } on FormatException catch (e) {
+      throw e;
     }
+
+    throw Exception();
+  }
+
+  Future<PokemonEvolution> getPokemonEvolution(String query) async {
+    try {
+      final response = await HttpService.getRequest('evolution-chain/$query/');
+
+      if (response.statusCode == 200) {
+        final result = pokemonEvolutionFromMap(response.body);
+        return result;
+      }
+    } on SocketException catch (e) {
+      throw e;
+    } on HttpException catch (e) {
+      throw e;
+    } on FormatException catch (e) {
+      throw e;
+    }
+
+    throw Exception();
   }
 }
