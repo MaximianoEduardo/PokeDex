@@ -10,8 +10,8 @@ class HttpService {
 
     try {
       response = await http.get(url);
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
 
     return response;

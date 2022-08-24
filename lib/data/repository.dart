@@ -15,12 +15,12 @@ class PokemonRepository {
         final result = pokedexFromMap(response.body);
         return result;
       }
-    } on SocketException catch (e) {
-      throw e;
-    } on HttpException catch (e) {
-      throw e;
-    } on FormatException catch (e) {
-      throw e;
+    } on SocketException {
+      rethrow;
+    } on HttpException {
+      rethrow;
+    } on FormatException {
+      rethrow;
     }
 
     throw Exception();
@@ -34,12 +34,12 @@ class PokemonRepository {
         final result = pokemonSpecieFromMap(response.body);
         return result;
       }
-    } on SocketException catch (e) {
-      throw e;
-    } on HttpException catch (e) {
-      throw e;
-    } on FormatException catch (e) {
-      throw e;
+    } on SocketException {
+      rethrow;
+    } on HttpException {
+      rethrow;
+    } on FormatException {
+      rethrow;
     }
 
     throw Exception();
@@ -53,12 +53,12 @@ class PokemonRepository {
         final result = pokemonEvolutionFromMap(response.body);
         return result;
       }
-    } on SocketException catch (e) {
-      throw e;
-    } on HttpException catch (e) {
-      throw e;
-    } on FormatException catch (e) {
-      throw e;
+    } on SocketException {
+      rethrow;
+    } on HttpException {
+      rethrow;
+    } on FormatException {
+      rethrow;
     }
 
     throw Exception();
