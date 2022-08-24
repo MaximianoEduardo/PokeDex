@@ -106,9 +106,7 @@ class _PokemonArgumentsState extends State<PokemonArguments> {
                   );
                 }
 
-                return Container(
-                  child: const Text('caiu aqui'),
-                );
+                return const Text('caiu aqui');
               }),
             ),
             PokemonStatsTab(pokemon: widget.pokemon),
@@ -131,9 +129,7 @@ class _PokemonArgumentsState extends State<PokemonArguments> {
                   );
                 }
 
-                return Container(
-                  child: const Text('caiu aqui'),
-                );
+                return const Text('caiu aqui');
               }),
             ),
           ]),

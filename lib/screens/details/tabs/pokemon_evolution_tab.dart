@@ -38,9 +38,7 @@ class PokemonEvolutionTab extends StatelessWidget {
             );
           }
 
-          return Container(
-            child: const Text('caiu aqui'),
-          );
+          return const Text('caiu aqui');
         }));
   }
 }
