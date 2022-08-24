@@ -24,7 +24,7 @@ class _PokedexState extends State<Pokedex> {
           getErrorWidget('error');
         } else if (state is EmptyPokedex) {
           getPokedexEmptyWidget(context);
-        } else if (state is AllPokemons) {
+        } else if (state is PokemonList) {
           final pokemon = state.pokemon;
           return PokemonsList(
             pokemon: pokemon,

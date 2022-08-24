@@ -30,13 +30,7 @@ class PokedexBloc extends Cubit<PokedexState> {
 
       uniquenum.sort((a, b) => a.id - b.id == 0 ? -1 : a.id - b.id);
 
-      emit(AllPokemons(pokemon: uniquenum));
-
-      // if (pokemon == null) {
-      //   emit(Error(message: "Dados Vazios"));
-      // } else {
-      //   emit(AllPokemons(pokemon: pokemon));
-      // }
+      emit(PokemonList(pokemon: uniquenum));
     } on Exception catch (e) {
       emit(
         Error(
@@ -51,10 +45,10 @@ abstract class PokedexState {}
 
 class EmptyPokedex extends PokedexState {}
 
-class AllPokemons extends PokedexState {
+class PokemonList extends PokedexState {
   final List<Pokedex> pokemon;
 
-  AllPokemons({required this.pokemon});
+  PokemonList({required this.pokemon});
 }
 
 class LoadingPokemons extends PokedexState {}
@@ -63,4 +57,8 @@ class Error extends PokedexState {
   final String message;
 
   Error({required this.message});
+}
+
+class PokemonGenerationI extends PokedexState {
+  final List generation = List<int>.generate(151, (index) => index + 1);
 }
