@@ -99,7 +99,11 @@ flutter:
     - assets/generations/generation1/
     - assets/generations/generation2/
     - assets/generations/generation3/     
-    - assets/generations/generation4/       
+    - assets/generations/generation4/
+    - assets/generations/generation5/
+    - assets/generations/generation6/
+    - assets/generations/generation7/
+    - assets/generations/generation8/
   fonts:
     - family: sf-pro
       fonts:
