@@ -1,5 +1,4 @@
 import 'package:app_pokedex/bloc/pokedex_bloc.dart';
-import 'package:app_pokedex/bloc/pokemon_bloc.dart';
 import 'package:app_pokedex/data/repository.dart';
 import 'package:app_pokedex/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -53,9 +52,6 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => PokedexBloc(PokemonRepository()),
-          ),
-          BlocProvider(
-            create: (context) => PokemonBloc(PokemonRepository()),
           ),
         ],
         child: const Routes(),
