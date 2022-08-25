@@ -33,6 +33,12 @@ class _PokemonCardState extends State<PokemonCard> {
   }
 
   @override
+  void dispose() {
+    _isLoading = false;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
