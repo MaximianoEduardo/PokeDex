@@ -96,6 +96,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/patterns/
+    - assets/icons/    
     - assets/generations/generation1/
     - assets/generations/generation2/
     - assets/generations/generation3/     
