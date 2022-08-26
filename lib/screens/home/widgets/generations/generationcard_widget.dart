@@ -23,7 +23,7 @@ class _GenerationsCardsState extends State<GenerationsCards> {
     return Padding(
       padding: const EdgeInsets.only(top: 35.0),
       child: SizedBox(
-        height: 400,
+        height: 430,
         child: GridView.count(
           mainAxisSpacing: 14,
           crossAxisSpacing: 14,
@@ -531,27 +531,35 @@ class _GenerationsCardsState extends State<GenerationsCards> {
 }
 
 Widget generationsPatterns(bool isActive) {
-  return ListView(
+  return Stack(
     children: [
-      SvgPicture.asset(
-        'assets/patterns/6x3.svg',
-        color: Colors.white.withOpacity(0.3),
-        width: 80,
-        height: 35,
+      Positioned(
+        left: 15,
+        top: 10,
+        child: SvgPicture.asset(
+          'assets/patterns/6x3.svg',
+          color: Colors.white.withOpacity(0.3),
+          width: 80,
+          height: 35,
+        ),
       ),
-      SvgPicture.asset(
-        'assets/patterns/pokeball.svg',
-        color: isActive
-            ? Color.alphaBlend(
-                const Color.fromRGBO(245, 245, 245, 0.4),
-                const Color.fromRGBO(236, 236, 236, 0.1),
-              )
-            : Color.alphaBlend(
-                const Color.fromRGBO(245, 245, 245, 1),
-                const Color.fromRGBO(236, 236, 236, 0.6),
-              ),
-        width: 145,
-        height: 145,
+      Positioned(
+        top: 90,
+        right: -20,
+        child: SvgPicture.asset(
+          'assets/patterns/pokeball.svg',
+          color: isActive
+              ? Color.alphaBlend(
+                  const Color.fromRGBO(245, 245, 245, 0.4),
+                  const Color.fromRGBO(236, 236, 236, 0.1),
+                )
+              : Color.alphaBlend(
+                  const Color.fromRGBO(245, 245, 245, 1),
+                  const Color.fromRGBO(236, 236, 236, 0.6),
+                ),
+          width: 110,
+          height: 110,
+        ),
       ),
     ],
   );

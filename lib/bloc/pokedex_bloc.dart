@@ -70,6 +70,27 @@ class PokedexBloc extends Cubit<PokedexState> {
     ));
   }
 
+  Future searchPokemon(String query) async {
+    pokemonsList.clear();
+
+    emit(LoadingPokemons());
+
+    try {
+      final pokemon = await _repository.getPokemon(query);
+
+      pokemonsList.add(pokemon);
+
+      emit(PokemonSearched(pokemon: pokemon));
+    } on Exception catch (e) {
+      emit(
+        Error(
+          message:
+              'Sorry, we Didnt find any pokemon related to your search! Try another one or changing how you searching.',
+        ),
+      );
+    }
+  }
+
   Future getPokemons(
     idPokemon,
     Generation generation,
@@ -180,4 +201,10 @@ class ChangingSort extends PokedexState {
     required this.sort,
     required this.namegeneration,
   });
+}
+
+class PokemonSearched extends PokedexState {
+  final Pokedex pokemon;
+
+  PokemonSearched({required this.pokemon});
 }

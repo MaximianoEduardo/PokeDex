@@ -1,6 +1,7 @@
 import 'package:app_pokedex/widgets/modal_bottom_sort.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../bloc/pokedex_bloc.dart';
 import '../../widgets/modal_bottom_generations.dart';
 import 'widgets/body_pokedex.dart';
@@ -59,52 +60,66 @@ class _PokedexState extends State<Pokedex> {
                           );
                         });
                   },
-                  child: const Icon(
-                    Icons.grid_3x3,
+                  child: SvgPicture.asset(
+                    'assets/icons/generation.svg',
+                    width: 25,
+                    height: 25,
                     color: Colors.black,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                        isScrollControlled: true,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        context: context,
-                        builder: (BuildContext context) {
-                          return BlocConsumer(
-                            bloc: cubit,
-                            listener: (context, state) {},
-                            builder: (context, state) {
-                              return state is PokemonList
-                                  ? FractionallySizedBox(
-                                      heightFactor: 0.5,
-                                      child: ModalBottomSort(
-                                        generation: state.generation,
-                                        sort: state.sort,
-                                      ),
-                                    )
-                                  : const FractionallySizedBox(
-                                      heightFactor: 0.5,
-                                      child: ModalBottomSort(
-                                        generation: Generation.generationI,
-                                        sort: SortPokemons.smallestID,
-                                      ),
-                                    );
-                            },
-                          );
-                        });
-                  },
-                  child: const Icon(
-                    Icons.filter_list,
-                    color: Colors.black,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          context: context,
+                          builder: (BuildContext context) {
+                            return BlocConsumer(
+                              bloc: cubit,
+                              listener: (context, state) {},
+                              builder: (context, state) {
+                                return state is PokemonList
+                                    ? FractionallySizedBox(
+                                        heightFactor: 0.5,
+                                        child: ModalBottomSort(
+                                          generation: state.generation,
+                                          sort: state.sort,
+                                        ),
+                                      )
+                                    : const FractionallySizedBox(
+                                        heightFactor: 0.5,
+                                        child: ModalBottomSort(
+                                          generation: Generation.generationI,
+                                          sort: SortPokemons.smallestID,
+                                        ),
+                                      );
+                              },
+                            );
+                          });
+                    },
+                    child: SvgPicture.asset(
+                      'assets/icons/sort.svg',
+                      width: 25,
+                      height: 25,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                const Icon(
-                  Icons.sort_sharp,
-                  color: Colors.black,
-                )
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    child: SvgPicture.asset(
+                      'assets/icons/filter.svg',
+                      width: 25,
+                      height: 25,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ],
             ),
           ],

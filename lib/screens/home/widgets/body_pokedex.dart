@@ -90,12 +90,21 @@ class BodyPokedex extends StatelessWidget {
               cubit.listPokemons(1, 151, generationName, sort);
           }
         }
+
+        if (state is PokemonSearched) {
+          final query = state.pokemon;
+
+          PokemonCard(
+            pokemon: query,
+          );
+        }
       },
       builder: (context, state) {
         if (state is LoadingPokemons) {
           getLoadingWidget();
         } else if (state is Error) {
-          getErrorWidget('error');
+          final String errorMessage = state.message;
+          getErrorWidget(errorMessage);
         } else if (state is EmptyPokedex) {
           getPokedexEmptyWidget(context, Generation.generationI);
         } else if (state is PokemonList) {
@@ -110,6 +119,16 @@ class BodyPokedex extends StatelessWidget {
                     .map((pokemonU) => PokemonCard(pokemon: pokemonU))
                     .toList()
               ],
+            ),
+          );
+        } else if (state is PokemonSearched) {
+          final pokemon = state.pokemon;
+          return DecoratedBox(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+            child: Column(
+              children: [PokemonCard(pokemon: pokemon)],
             ),
           );
         }

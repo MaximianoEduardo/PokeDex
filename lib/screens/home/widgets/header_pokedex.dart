@@ -63,12 +63,17 @@ class _HeaderPokedexState extends State<HeaderPokedex> {
               child: TextField(
                 controller: _inputController,
                 onSubmitted: (value) {
-                  //cubit.filterPokemon(value);
+                  cubit.searchPokemon(value.toString());
                 },
                 onChanged: (value) {
-                  // if (value.isEmpty) {
-                  //   cubit.listPokemons(1, 151, ge);
-                  // }
+                  if (value.isEmpty) {
+                    cubit.listPokemons(
+                      1,
+                      151,
+                      Generation.generationI,
+                      SortPokemons.smallestID,
+                    );
+                  }
                 },
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
