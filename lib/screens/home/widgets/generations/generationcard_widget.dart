@@ -31,8 +31,8 @@ class _GenerationsCardsState extends State<GenerationsCards> {
           children: [
             GestureDetector(
               onTap: () {
-                cubit.setGeneration(Generation.generationI);
                 Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationI);
               },
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -92,8 +92,8 @@ class _GenerationsCardsState extends State<GenerationsCards> {
             ),
             GestureDetector(
               onTap: () {
-                cubit.setGeneration(Generation.generationII);
                 Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationII);
               },
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -154,8 +154,8 @@ class _GenerationsCardsState extends State<GenerationsCards> {
             ),
             GestureDetector(
               onTap: () {
-                cubit.setGeneration(Generation.generationIII);
                 Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationIII);
               },
               child: Card(
                 shape: RoundedRectangleBorder(

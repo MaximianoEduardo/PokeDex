@@ -17,33 +17,77 @@ class BodyPokedex extends StatelessWidget {
       listener: (context, state) {
         if (state is ChangingGeneration) {
           final generationName = state.namegeneration;
+
           switch (generationName) {
             case Generation.generationI:
-              cubit.listPokemons(1, 151, generationName);
+              cubit.listPokemons(
+                  1, 151, generationName, SortPokemons.smallestID);
               break;
             case Generation.generationII:
-              cubit.listPokemons(152, 251, generationName);
+              cubit.listPokemons(
+                  152, 251, generationName, SortPokemons.smallestID);
               break;
             case Generation.generationIII:
-              cubit.listPokemons(252, 386, generationName);
+              cubit.listPokemons(
+                  252, 386, generationName, SortPokemons.smallestID);
               break;
             case Generation.generationIV:
-              cubit.listPokemons(387, 493, generationName);
+              cubit.listPokemons(
+                  387, 493, generationName, SortPokemons.smallestID);
               break;
             case Generation.generationV:
-              cubit.listPokemons(494, 649, generationName);
+              cubit.listPokemons(
+                  494, 649, generationName, SortPokemons.smallestID);
               break;
             case Generation.generationVI:
-              cubit.listPokemons(650, 721, generationName);
+              cubit.listPokemons(
+                  650, 721, generationName, SortPokemons.smallestID);
               break;
             case Generation.generationVII:
-              cubit.listPokemons(722, 809, generationName);
+              cubit.listPokemons(
+                  722, 809, generationName, SortPokemons.smallestID);
               break;
             case Generation.generationVIII:
-              cubit.listPokemons(810, 905, generationName);
+              cubit.listPokemons(
+                  810, 905, generationName, SortPokemons.smallestID);
               break;
             default:
-              cubit.listPokemons(1, 151, generationName);
+              cubit.listPokemons(
+                  1, 151, generationName, SortPokemons.smallestID);
+          }
+        }
+
+        if (state is ChangingSort) {
+          final sort = state.sort;
+          final generationName = state.namegeneration;
+
+          switch (generationName) {
+            case Generation.generationI:
+              cubit.listPokemons(1, 151, generationName, sort);
+              break;
+            case Generation.generationII:
+              cubit.listPokemons(152, 251, generationName, sort);
+              break;
+            case Generation.generationIII:
+              cubit.listPokemons(252, 386, generationName, sort);
+              break;
+            case Generation.generationIV:
+              cubit.listPokemons(387, 493, generationName, sort);
+              break;
+            case Generation.generationV:
+              cubit.listPokemons(494, 649, generationName, sort);
+              break;
+            case Generation.generationVI:
+              cubit.listPokemons(650, 721, generationName, sort);
+              break;
+            case Generation.generationVII:
+              cubit.listPokemons(722, 809, generationName, sort);
+              break;
+            case Generation.generationVIII:
+              cubit.listPokemons(810, 905, generationName, sort);
+              break;
+            default:
+              cubit.listPokemons(1, 151, generationName, sort);
           }
         }
       },
@@ -92,21 +136,45 @@ Widget getPokedexEmptyWidget(BuildContext context, Generation generation) {
 
   switch (generation) {
     case Generation.generationI:
-      cubit.listPokemons(1, 151, generation);
+      cubit.listPokemons(
+        1,
+        151,
+        generation,
+        SortPokemons.smallestID,
+      );
       break;
     case Generation.generationII:
-      cubit.listPokemons(152, 251, generation);
+      cubit.listPokemons(
+        152,
+        251,
+        generation,
+        SortPokemons.smallestID,
+      );
       break;
     case Generation.generationIII:
-      cubit.listPokemons(387, 493, generation);
+      cubit.listPokemons(
+        387,
+        493,
+        generation,
+        SortPokemons.smallestID,
+      );
       break;
     case Generation.generationIV:
-      cubit.listPokemons(494, 649, generation);
+      cubit.listPokemons(
+        494,
+        649,
+        generation,
+        SortPokemons.smallestID,
+      );
       break;
     default:
-      cubit.listPokemons(1, 151, generation);
+      cubit.listPokemons(
+        1,
+        151,
+        generation,
+        SortPokemons.smallestID,
+      );
   }
-  //| 252-386 | 387-493 | 494-649 | 650-721 | 722-809 | 810-905
 
   return const Text('vazio');
 }

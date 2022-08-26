@@ -1,3 +1,4 @@
+import 'package:app_pokedex/widgets/modal_bottom_sort.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/pokedex_bloc.dart';
@@ -63,9 +64,42 @@ class _PokedexState extends State<Pokedex> {
                     color: Colors.black,
                   ),
                 ),
-                const Icon(
-                  Icons.filter_list,
-                  color: Colors.black,
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        context: context,
+                        builder: (BuildContext context) {
+                          return BlocConsumer(
+                            bloc: cubit,
+                            listener: (context, state) {},
+                            builder: (context, state) {
+                              return state is PokemonList
+                                  ? FractionallySizedBox(
+                                      heightFactor: 0.5,
+                                      child: ModalBottomSort(
+                                        generation: state.generation,
+                                        sort: state.sort,
+                                      ),
+                                    )
+                                  : const FractionallySizedBox(
+                                      heightFactor: 0.5,
+                                      child: ModalBottomSort(
+                                        generation: Generation.generationI,
+                                        sort: SortPokemons.smallestID,
+                                      ),
+                                    );
+                            },
+                          );
+                        });
+                  },
+                  child: const Icon(
+                    Icons.filter_list,
+                    color: Colors.black,
+                  ),
                 ),
                 const Icon(
                   Icons.sort_sharp,
