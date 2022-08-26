@@ -631,23 +631,23 @@ class GenerationViii {
 
 class Other {
   Other({
-    required this.dreamWorld,
+    //required this.dreamWorld,
     required this.home,
     required this.officialArtwork,
   });
 
-  final DreamWorld dreamWorld;
+  //final DreamWorld dreamWorld;
   final Home home;
   final OfficialArtwork officialArtwork;
 
   factory Other.fromMap(Map<String, dynamic> json) => Other(
-        dreamWorld: DreamWorld.fromMap(json["dream_world"]),
+        //dreamWorld: DreamWorld.fromMap(json["dream_world"]),
         home: Home.fromMap(json["home"]),
         officialArtwork: OfficialArtwork.fromMap(json["official-artwork"]),
       );
 
   Map<String, dynamic> toMap() => {
-        "dream_world": dreamWorld.toMap(),
+        //"dream_world": dreamWorld.toMap(),
         "home": home.toMap(),
         "official-artwork": officialArtwork.toMap(),
       };

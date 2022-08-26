@@ -214,280 +214,313 @@ class _GenerationsCardsState extends State<GenerationsCards> {
                 ),
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: widget.generation == Generation.generationIV
-                  ? const Color.fromRGBO(234, 93, 96, 1)
-                  : const Color.fromRGBO(242, 242, 242, 1),
-              child: Stack(
-                children: [
-                  generationsPatterns(
-                      widget.generation == Generation.generationIV
-                          ? true
-                          : false),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/generations/generation4/387.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation4/390.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation4/393.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text(
-                          'Generation IV',
-                          style: TextStyle(
-                            color: widget.generation == Generation.generationIV
-                                ? Colors.white
-                                : const Color.fromRGBO(16, 116, 118, 1),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationIV);
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: widget.generation == Generation.generationIV
+                    ? const Color.fromRGBO(234, 93, 96, 1)
+                    : const Color.fromRGBO(242, 242, 242, 1),
+                child: Stack(
+                  children: [
+                    generationsPatterns(
+                        widget.generation == Generation.generationIV
+                            ? true
+                            : false),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/generations/generation4/387.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation4/390.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation4/393.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          child: Text(
+                            'Generation IV',
+                            style: TextStyle(
+                              color:
+                                  widget.generation == Generation.generationIV
+                                      ? Colors.white
+                                      : const Color.fromRGBO(16, 116, 118, 1),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: widget.generation == Generation.generationV
-                  ? const Color.fromRGBO(234, 93, 96, 1)
-                  : const Color.fromRGBO(242, 242, 242, 1),
-              child: Stack(
-                children: [
-                  generationsPatterns(
-                      widget.generation == Generation.generationV
-                          ? true
-                          : false),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/generations/generation5/495.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation5/498.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation5/501.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text(
-                          'Generation V',
-                          style: TextStyle(
-                            color: widget.generation == Generation.generationV
-                                ? Colors.white
-                                : const Color.fromRGBO(16, 116, 118, 1),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationV);
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: widget.generation == Generation.generationV
+                    ? const Color.fromRGBO(234, 93, 96, 1)
+                    : const Color.fromRGBO(242, 242, 242, 1),
+                child: Stack(
+                  children: [
+                    generationsPatterns(
+                        widget.generation == Generation.generationV
+                            ? true
+                            : false),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/generations/generation5/495.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation5/498.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation5/501.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          child: Text(
+                            'Generation V',
+                            style: TextStyle(
+                              color: widget.generation == Generation.generationV
+                                  ? Colors.white
+                                  : const Color.fromRGBO(16, 116, 118, 1),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: widget.generation == Generation.generationVI
-                  ? const Color.fromRGBO(234, 93, 96, 1)
-                  : const Color.fromRGBO(242, 242, 242, 1),
-              child: Stack(
-                children: [
-                  generationsPatterns(
-                      widget.generation == Generation.generationVI
-                          ? true
-                          : false),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/generations/generation6/650.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation6/653.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation6/656.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text(
-                          'Generation VI',
-                          style: TextStyle(
-                            color: widget.generation == Generation.generationVI
-                                ? Colors.white
-                                : const Color.fromRGBO(16, 116, 118, 1),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationVI);
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: widget.generation == Generation.generationVI
+                    ? const Color.fromRGBO(234, 93, 96, 1)
+                    : const Color.fromRGBO(242, 242, 242, 1),
+                child: Stack(
+                  children: [
+                    generationsPatterns(
+                        widget.generation == Generation.generationVI
+                            ? true
+                            : false),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/generations/generation6/650.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation6/653.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation6/656.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          child: Text(
+                            'Generation VI',
+                            style: TextStyle(
+                              color:
+                                  widget.generation == Generation.generationVI
+                                      ? Colors.white
+                                      : const Color.fromRGBO(16, 116, 118, 1),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: widget.generation == Generation.generationVII
-                  ? const Color.fromRGBO(234, 93, 96, 1)
-                  : const Color.fromRGBO(242, 242, 242, 1),
-              child: Stack(
-                children: [
-                  generationsPatterns(
-                      widget.generation == Generation.generationVII
-                          ? true
-                          : false),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/generations/generation7/722.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation7/725.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation7/728.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text(
-                          'Generation VII',
-                          style: TextStyle(
-                            color: widget.generation == Generation.generationVII
-                                ? Colors.white
-                                : const Color.fromRGBO(16, 116, 118, 1),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationVII);
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: widget.generation == Generation.generationVII
+                    ? const Color.fromRGBO(234, 93, 96, 1)
+                    : const Color.fromRGBO(242, 242, 242, 1),
+                child: Stack(
+                  children: [
+                    generationsPatterns(
+                        widget.generation == Generation.generationVII
+                            ? true
+                            : false),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/generations/generation7/722.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation7/725.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation7/728.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          child: Text(
+                            'Generation VII',
+                            style: TextStyle(
+                              color:
+                                  widget.generation == Generation.generationVII
+                                      ? Colors.white
+                                      : const Color.fromRGBO(16, 116, 118, 1),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              color: widget.generation == Generation.generationVIII
-                  ? const Color.fromRGBO(234, 93, 96, 1)
-                  : const Color.fromRGBO(242, 242, 242, 1),
-              child: Stack(
-                children: [
-                  generationsPatterns(
-                      widget.generation == Generation.generationVIII
-                          ? true
-                          : false),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/generations/generation8/810.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation8/813.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/generations/generation8/816.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text(
-                          'Generation VIII',
-                          style: TextStyle(
-                            color:
-                                widget.generation == Generation.generationVIII
-                                    ? Colors.white
-                                    : const Color.fromRGBO(16, 116, 118, 1),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+                cubit.setGeneration(Generation.generationVIII);
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: widget.generation == Generation.generationVIII
+                    ? const Color.fromRGBO(234, 93, 96, 1)
+                    : const Color.fromRGBO(242, 242, 242, 1),
+                child: Stack(
+                  children: [
+                    generationsPatterns(
+                        widget.generation == Generation.generationVIII
+                            ? true
+                            : false),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/generations/generation8/810.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation8/813.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                              Image.asset(
+                                'assets/generations/generation8/816.png',
+                                width: 40,
+                                height: 40,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          child: Text(
+                            'Generation VIII',
+                            style: TextStyle(
+                              color:
+                                  widget.generation == Generation.generationVIII
+                                      ? Colors.white
+                                      : const Color.fromRGBO(16, 116, 118, 1),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
