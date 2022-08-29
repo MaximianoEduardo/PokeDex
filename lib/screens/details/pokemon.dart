@@ -1,12 +1,15 @@
+import 'package:app_pokedex/bloc/pokemon_specie_bloc.dart';
 import 'package:app_pokedex/common/capitalize.dart';
 import 'package:app_pokedex/data/repository.dart';
+import 'package:app_pokedex/models/pokemon_evolution.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
 import 'package:app_pokedex/models/pokemon_specie.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_about_tab.dart';
-import 'package:app_pokedex/screens/details/tabs/pokemon_evolution_tab.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_stats_tab.dart';
+import 'package:app_pokedex/screens/details/widgets/pokemon_evolution.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/pokemon_default_widget.dart';
 
@@ -29,6 +32,8 @@ class PokemonArguments extends StatefulWidget {
 class _PokemonArgumentsState extends State<PokemonArguments> {
   @override
   Widget build(BuildContext context) {
+    final cubitSpecie = context.watch<PokemonSpecieBloc>();
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -87,52 +92,13 @@ class _PokemonArgumentsState extends State<PokemonArguments> {
               )
             ];
           },
-          body: TabBarView(children: [
-            FutureBuilder<PokemonSpecie>(
-              future: widget.repository.getPokemonSpecie(
-                widget.pokemon.id.toString(),
-              ),
-              builder: ((BuildContext context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return PokemonAboutTab(
-                    pokemon: widget.pokemon,
-                    pokemonSpecie: snapshot.data!,
-                  );
-                }
-
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: Text('Carregando'),
-                  );
-                }
-
-                return const Text('caiu aqui');
-              }),
-            ),
-            PokemonStatsTab(pokemon: widget.pokemon),
-            FutureBuilder<PokemonSpecie>(
-              future: widget.repository.getPokemonSpecie(
-                widget.pokemon.id.toString(),
-              ),
-              builder: ((BuildContext context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return PokemonEvolutionTab(
-                    repository: widget.repository,
-                    pokemon: widget.pokemon,
-                    specie: snapshot.data!,
-                  );
-                }
-
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: Text('Carregando'),
-                  );
-                }
-
-                return const Text('caiu aqui');
-              }),
-            ),
-          ]),
+          body: TabBarView(
+            children: [
+              consumerAbout(cubitSpecie, widget.pokemon),
+              PokemonStatsTab(pokemon: widget.pokemon),
+              consumerEvolution(cubitSpecie, widget.pokemon)
+            ],
+          ),
         ),
       ),
     );
@@ -143,4 +109,71 @@ class ScreenArguments {
   final Pokedex pokemon;
 
   ScreenArguments(this.pokemon);
+}
+
+Widget getLoadingSpeciesDetails(PokemonSpecieBloc cubit, Pokedex pokemon) {
+  cubit.getPokemonSpecie(pokemon.id.toString());
+  return const Text('Loading');
+}
+
+Widget getPokemonAboutTab(PokemonSpecie pokemonSpecie, Pokedex pokemon) {
+  final pokemonSpecie_ = pokemonSpecie;
+
+  return PokemonAboutTab(
+    pokemon: pokemon,
+    pokemonSpecie: pokemonSpecie_,
+  );
+}
+
+Widget consumerAbout(PokemonSpecieBloc cubitSpecie, Pokedex pokemon) {
+  return BlocConsumer<PokemonSpecieBloc, PokemonSpecieState>(
+    bloc: cubitSpecie,
+    listener: (context, state) {
+      if (state is EmptyPokemonSpecieDetails) {
+        cubitSpecie.getPokemonSpecie(pokemon.id.toString());
+      }
+    },
+    builder: (context, state) {
+      return state is EmptyPokemonSpecieDetails
+          ? getLoadingSpeciesDetails(cubitSpecie, pokemon)
+          : state is PokemonSpecieDetails
+              ? getPokemonAboutTab(
+                  state.pokemonSpecie,
+                  pokemon,
+                )
+              : state is LoadingPokemonSpecieDetails
+                  ? getLoadingSpeciesDetails(cubitSpecie, pokemon)
+                  : const Text('data');
+    },
+  );
+}
+
+Widget consumerEvolution(PokemonSpecieBloc cubitSpecie, Pokedex pokemon) {
+  return BlocConsumer<PokemonSpecieBloc, PokemonSpecieState>(
+    bloc: cubitSpecie,
+    listener: (context, state) {},
+    builder: (context, state) {
+      return state is EmptyPokemonSpecieDetails
+          ? getLoadingSpeciesDetails(cubitSpecie, pokemon)
+          : state is PokemonSpecieDetails
+              ? getPokemonEvolutionTab(
+                  state.pokemonEvolution,
+                  state.pokemonSpecie,
+                  pokemon,
+                )
+              : const Text('data');
+    },
+  );
+}
+
+Widget getPokemonEvolutionTab(
+  PokemonEvolution pokemonEvolution,
+  PokemonSpecie species,
+  Pokedex pokemon,
+) {
+  return PokemonEvolutionWidget(
+    evolution: pokemonEvolution,
+    species: species,
+    pokemon: pokemon,
+  );
 }
