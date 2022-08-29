@@ -1,8 +1,8 @@
-import 'package:app_pokedex/common/capitalize.dart';
 import 'package:app_pokedex/models/pokemon_evolution.dart';
 import 'package:app_pokedex/models/pokemon_specie.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../models/pokemon_info.dart';
 
@@ -23,31 +23,48 @@ class PokemonEvolutionWidget extends StatelessWidget {
     return ListView(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Row(
-              //   children: [
-              //     CachedNetworkImage(
-              //       imageUrl:
-              //           pokemon.sprites.other.officialArtwork.frontDefault,
-              //       width: 75,
-              //       height: 75,
-              //     ),
-              //   ],
-              // ),
+              Column(
+                children: [
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: SvgPicture.asset(
+                          'assets/patterns/pokeball.svg',
+                          width: 100,
+                          height: 100,
+                          color: const Color.fromRGBO(245, 245, 245, 0.4),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl: pokemon
+                                .sprites.other.officialArtwork.frontDefault,
+                            width: 75,
+                            height: 75,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text('#${evolution.id.toString()}'),
+                    ],
+                  ),
+                ],
+              ),
               // Column(
               //   children: [
-              //     Text('#${evolution.id.toString()}'),
-              //     Text(
-              //       capitalize(
-              //         evolution.chain.species.name,
-              //       ),
-              //     ),
+              //     ...evolution.chain.evolvesTo
+              //         .map((e) => getEvolutionDetails(e))
+              //         .toList(),
               //   ],
-              // ),
-              ...minLevel(evolution.chain.evolutionDetails),
+              // )
             ],
           ),
         ),
@@ -56,6 +73,7 @@ class PokemonEvolutionWidget extends StatelessWidget {
   }
 }
 
-List<Text> minLevel(List<EvolutionDetail> chain) {
-  return chain.map((e) => Text(e.trigger.name)).toList();
-}
+// Widget getEvolutionDetails(Chain evolvesto) {
+//   return (Text(evolvesto.evolvesTo
+//   ));
+// }
