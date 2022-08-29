@@ -81,7 +81,7 @@ class PokedexBloc extends Cubit<PokedexState> {
       pokemonsList.add(pokemon);
 
       emit(PokemonSearched(pokemon: pokemon));
-    } on Exception catch (e) {
+    } on Exception {
       emit(
         Error(
           message:

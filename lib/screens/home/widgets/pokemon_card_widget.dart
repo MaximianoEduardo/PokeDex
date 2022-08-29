@@ -1,8 +1,11 @@
+import 'package:app_pokedex/bloc/pokemon_specie_bloc.dart';
+import 'package:app_pokedex/data/repository.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
 import 'package:app_pokedex/screens/details/pokemon.dart';
 import 'package:app_pokedex/screens/home/widgets/card_skeleton_widget.dart';
 import 'package:app_pokedex/screens/home/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PokemonCard extends StatefulWidget {
   const PokemonCard({
@@ -44,10 +47,16 @@ class _PokemonCardState extends State<PokemonCard> {
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
       child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(
+            BlocProvider<PokemonSpecieBloc>(
+                create: (context) => PokemonSpecieBloc(PokemonRepository()));
+            Navigator.push(
               context,
-              PokemonArguments.routeName,
-              arguments: ScreenArguments(widget.pokemon),
+              MaterialPageRoute(
+                builder: (routeContext) => PokemonArguments(
+                  pokemon: widget.pokemon,
+                  repository: PokemonRepository(),
+                ),
+              ),
             );
           },
           child: _isLoading
