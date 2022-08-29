@@ -22,8 +22,7 @@ class _ModalBottomGenerationsState extends State<ModalBottomGenerations> {
         vertical: 30,
         horizontal: 40,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
           Text(
             'Generations',
