@@ -51,13 +51,14 @@ class CardWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-            top: 10,
-            right: 15,
-            child: CachedNetworkImage(
-              imageUrl: pokemon.sprites.other.officialArtwork.frontDefault,
-              width: 130,
-              height: 130,
-            )),
+          top: 10,
+          right: 15,
+          child: CachedNetworkImage(
+            imageUrl: pokemon.sprites.other.officialArtwork.frontDefault,
+            width: 130,
+            height: 130,
+          ),
+        ),
       ],
     );
   }

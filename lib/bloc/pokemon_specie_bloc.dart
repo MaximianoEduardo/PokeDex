@@ -15,32 +15,11 @@ class PokemonSpecieBloc extends Cubit<PokemonSpecieState> {
       final pokemonSpecieDetailsResponse =
           await _repository.getPokemonSpecie(idPokemon.toString());
 
-      final String pokemonChainID = pokemonSpecieDetailsResponse
-          .evolutionChain.url
-          .split('/')[6]
-          .toString();
-
-      Future getPokemonEvolution() async {
-        try {
-          final pokemonEvolutionResponse =
-              await _repository.getPokemonEvolution(pokemonChainID.toString());
-
-          emit(
-            PokemonSpecieDetails(
-                pokemonSpecie: pokemonSpecieDetailsResponse,
-                pokemonEvolution: pokemonEvolutionResponse),
-          );
-        } on Exception {
-          emit(
-            Error(
-              message:
-                  'Sorry, we Didnt find any pokemon related to your search! Try another one or changing how you searching.',
-            ),
-          );
-        }
-      }
-
-      return getPokemonEvolution();
+      return emit(
+        PokemonSpecieDetails(
+          pokemonSpecie: pokemonSpecieDetailsResponse,
+        ),
+      );
     } on Exception {
       emit(
         Error(
@@ -49,6 +28,26 @@ class PokemonSpecieBloc extends Cubit<PokemonSpecieState> {
         ),
       );
     }
+  }
+
+  Future getPokemonEvolution(String pokemonChainID) async {
+    try {
+      final pokemonEvolutionResponse =
+          await _repository.getPokemonEvolution(pokemonChainID.toString());
+
+      emit(PokemonEvolutionDetails(pokemonEvolution: pokemonEvolutionResponse));
+    } on Exception {
+      emit(
+        Error(
+          message:
+              'Sorry, we Didnt find any pokemon related to your search! Try another one or changing how you searching.',
+        ),
+      );
+    }
+  }
+
+  setInitialState() {
+    emit(EmptyPokemonSpecieDetails());
   }
 }
 
@@ -66,10 +65,14 @@ class EmptyPokemonSpecieDetails extends PokemonSpecieState {}
 
 class PokemonSpecieDetails extends PokemonSpecieState {
   final PokemonSpecie pokemonSpecie;
-  final PokemonEvolution pokemonEvolution;
 
   PokemonSpecieDetails({
     required this.pokemonSpecie,
-    required this.pokemonEvolution,
   });
+}
+
+class PokemonEvolutionDetails extends PokemonSpecieState {
+  final PokemonEvolution pokemonEvolution;
+
+  PokemonEvolutionDetails({required this.pokemonEvolution});
 }
