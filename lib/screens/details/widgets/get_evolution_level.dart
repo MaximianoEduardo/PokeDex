@@ -20,10 +20,14 @@ class GetLevelUP extends StatelessWidget {
         ),
         ...evolutionDetails
             .map(
-              (e) => Text('(Level ${e.minLevel.toString()})'),
+              (e) => checkLevel(e.minLevel),
             )
             .toList(),
       ],
     );
   }
+}
+
+Widget checkLevel(dynamic minLevel) {
+  return (Text('(Level ${minLevel.toString()})'));
 }

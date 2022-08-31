@@ -97,7 +97,7 @@ class EvolutionDetail {
   final dynamic minAffection;
   final dynamic minBeauty;
   final dynamic minHappiness;
-  final int minLevel;
+  final dynamic minLevel;
   final bool needsOverworldRain;
   final dynamic partySpecies;
   final dynamic partyType;
@@ -138,7 +138,7 @@ class EvolutionDetail {
         "min_affection": minAffection,
         "min_beauty": minBeauty,
         "min_happiness": minHappiness,
-        "min_level": minLevel,
+        "min_level": minLevel == null ? 0 : minLevel,
         "needs_overworld_rain": needsOverworldRain,
         "party_species": partySpecies,
         "party_type": partyType,
