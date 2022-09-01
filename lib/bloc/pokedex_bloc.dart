@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app_pokedex/data/repository.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -137,6 +139,12 @@ class PokedexBloc extends Cubit<PokedexState> {
         generation: generation,
         sort: sort,
       ));
+    } on SocketException {
+      rethrow;
+    } on HttpException {
+      rethrow;
+    } on FormatException {
+      rethrow;
     } on Exception catch (e) {
       emit(
         Error(
