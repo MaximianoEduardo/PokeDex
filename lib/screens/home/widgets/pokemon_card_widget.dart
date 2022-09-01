@@ -25,20 +25,27 @@ class _PokemonCardState extends State<PokemonCard> {
   @override
   void initState() {
     _isLoading = true;
-
-    Future.delayed(const Duration(seconds: 6), () {
-      setState(() {
-        _isLoading = false;
-      });
-    });
-
     super.initState();
+    if (!mounted) {
+      return;
+    }
+    if (mounted) {
+      Future.delayed(const Duration(seconds: 2), () {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+  }
+
+  void setStateIfMounted(f) {
+    if (mounted) setState(f);
   }
 
   @override
   void dispose() {
-    _isLoading = false;
     super.dispose();
+    _isLoading = false;
   }
 
   @override

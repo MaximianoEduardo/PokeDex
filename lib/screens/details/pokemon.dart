@@ -76,17 +76,6 @@ class _PokemonArgumentsState extends State<PokemonArguments>
           headerSliverBuilder: (context, _) {
             return [
               SliverAppBar(
-                leading: GestureDetector(
-                  onTap: () {
-                    _selectedIndex == 2 ? cubitSpecie.setInitialState() : null;
-                    Navigator.maybePop(context);
-                  },
-                  child: Icon(
-                    Icons.arrow_back,
-                    size: 25,
-                    color: Colors.white,
-                  ),
-                ),
                 backgroundColor: widget.pokemon.baseColor,
                 expandedHeight: 300,
                 collapsedHeight: 300,
@@ -183,7 +172,7 @@ Widget consumerAbout(
                 ? getLoadingSpeciesDetails(cubit, pokemon)
                 : state is EmptyPokemonSpecieDetails
                     ? getLoadingSpeciesDetails(cubit, pokemon)
-                    : index != 0
+                    : state is PokemonEvolutionDetails
                         ? setStateBack(cubit, pokemon)
                         : Text('data, ${cubit.state}');
       },
@@ -192,7 +181,7 @@ Widget consumerAbout(
 
 Widget setStateBack(PokemonSpecieBloc cubit, Pokedex pokemon) {
   cubit.getPokemonSpecie(pokemon.id.toString());
-  return Text('data');
+  return const Text('data');
 }
 
 Widget consumerEvolution(PokemonSpecieBloc cubitSpecie, Pokedex pokemon,
@@ -205,44 +194,24 @@ Widget consumerEvolution(PokemonSpecieBloc cubitSpecie, Pokedex pokemon,
       }
     },
     builder: (context, state) {
-      return state is LoadingPokemonSpecieDetails
-          ? Text('${index.toString()}, ${cubitSpecie.state}')
-          //: Text('${index.toString()}, ${cubitSpecie.state}');
-          : state is PokemonSpecieDetails
-              ? GetPokemonEvolutionTab(
-                  cubit: cubitSpecie,
-                  pokemon: pokemon,
-                  pokemonChainId:
-                      state.pokemonSpecie.evolutionChain.url.split('/')[6],
-                )
-              : state is PokemonEvolutionDetails
-                  ? PokemonEvolutionWidget(
-                      evolution: state.pokemonEvolution, pokemon: pokemon)
+      return state is PokemonSpecieDetails
+          ? getPokemonEvolutionTab(
+              cubitSpecie,
+              state.pokemonSpecie.evolutionChain.url.split('/')[6],
+            )
+          : state is PokemonEvolutionDetails
+              ? PokemonEvolutionWidget(
+                  evolution: state.pokemonEvolution, pokemon: pokemon)
+              : state is LoadingPokemonSpecieDetails
+                  ? const Text('Carregando')
                   : Text('data, ${cubitSpecie.state}');
     },
   );
 }
 
-class GetPokemonEvolutionTab extends StatelessWidget {
-  final PokemonSpecieBloc cubit;
-  final Pokedex pokemon;
-  final String pokemonChainId;
-
-  const GetPokemonEvolutionTab({
-    super.key,
-    required this.cubit,
-    required this.pokemon,
-    required this.pokemonChainId,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    //print(cubit.state);
-    cubit.getPokemonEvolution(pokemonChainId);
-    // print(cubit.state);
-
-    return Container();
-  }
+Widget getPokemonEvolutionTab(PokemonSpecieBloc cubit, String pokemonChainId) {
+  cubit.getPokemonEvolution(pokemonChainId);
+  return const Text('data');
 }
 
 Widget getPokemonEvolutionTabs(
