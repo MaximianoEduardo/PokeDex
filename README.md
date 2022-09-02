@@ -1,16 +1,49 @@
-# app_pokedex
 
-A new Flutter project.
+# Flutter Pokedex
 
-## Getting Started
+Projeto seguindo passos de como criar uma pokedex em Flutter. Apenas para estudos
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+![Home](screenshots/Home.jpeg "Home")
+![Pokedex Generation](screenshots/Generations.jpeg "Pokedex Generation")
+![Pokedex Sort](screenshots/Sort.jpeg "Pokedex Generation")
+![Pokemon Info - About](screenshots/PokemonAbout.jpeg "Pokemon Info - About")
+![Pokemon Info - Base Stats](screenshots/PokemonStats.jpeg "Pokemon Stats - Base Stats")
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Funcionalidades
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [x]  Shimmer Effect
+- [x]  States
+- [x]  Cached Images
+- [x]  Filter
+- [x]  Search
+- [ ]  Storage
+- [x]  API
+- [x]  Bloc
+- [ ]  Tests
+
+
+
+## Referência
+
+ - [Pokedex APP](https://dribbble.com/shots/6545819-Pokedex-App)
+ - [Pokedex API](https://pokeapi.co/)
+
+## Melhorias
+
+#### APP
+- Pokemon - Evolution
+- Pokemon - Moves
+- Pokemon - Defenses
+
+#### UI
+ - DarkMode
+ - Favorite Pokemon
+ - Animations
+
+
+## Licença
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
