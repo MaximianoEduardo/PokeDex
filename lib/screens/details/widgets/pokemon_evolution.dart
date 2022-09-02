@@ -1,6 +1,5 @@
 import 'package:app_pokedex/common/capitalize.dart';
 import 'package:app_pokedex/models/pokemon_evolution.dart';
-import 'package:app_pokedex/models/pokemon_specie.dart';
 import 'package:app_pokedex/screens/details/widgets/evolution_logic.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

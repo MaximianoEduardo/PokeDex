@@ -15,6 +15,7 @@ class EvolutionFirstLogic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ...evolution
             .map((e) => GetLevelUP(evolutionDetails: e.evolutionDetails))
@@ -100,12 +101,12 @@ class EvolutionFourLogic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Chain getLevelUpFirst = secondEvolution.first;
+
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ...secondEvolution.map((e) => Column(children: [
-              ...e.evolvesTo
-                  .map((e) => GetLevelUP(evolutionDetails: e.evolutionDetails))
-            ]))
+        GetLevelUP(evolutionDetails: getLevelUpFirst.evolutionDetails)
       ],
     );
   }
@@ -121,48 +122,49 @@ class EvolutionFiveLogic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Chain lastEvolution = secondEvolution.first;
+
     return Column(
       children: [
-        ...secondEvolution
-            .map((e) => getSecondEvolutionWidgetLastEvolution(e.evolvesTo))
+        getSecondEvolutionWidgetLastEvolution(lastEvolution.evolvesTo)
       ],
     );
   }
 }
 
 Widget getSecondEvolutionWidgetLastEvolution(List<Chain> e) {
-  return Column(
-    children: [...e.map((e) => getLastEvolution(e))],
-  );
+  final Chain lastEvolution = e[0];
+
+  if (e.isNotEmpty) {
+    getLastEvolution(lastEvolution);
+  }
+
+  return Container();
 }
 
 Widget getLastEvolution(Chain e) {
   return Column(
     children: [
-      Column(
-        children: [
-          CachedNetworkImage(
-            imageUrl:
-                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.species.url.split('/')[6].toString()}.png',
-            width: 60,
-            height: 60,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Text(
-              '#${e.species.url.split('/')[6].toString()}',
-              style: const TextStyle(
-                  color: Color.fromRGBO(116, 116, 118, 1), fontSize: 12),
-            ),
-          ),
-          Text(
-            capitalize(e.species.name),
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        ],
+      CachedNetworkImage(
+        imageUrl:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${e.species.url.split('/')[6].toString()}.png',
+        width: 60,
+        height: 60,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10.0),
+        child: Text(
+          '#${e.species.url.split('/')[6].toString()}',
+          style: const TextStyle(
+              color: Color.fromRGBO(116, 116, 118, 1), fontSize: 12),
+        ),
+      ),
+      Text(
+        capitalize(e.species.name),
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
       )
     ],
   );

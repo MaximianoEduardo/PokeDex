@@ -62,15 +62,6 @@ class PokemonData extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       )),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text('Weaknesses',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      )),
-                ),
               ],
             ),
             Padding(
@@ -113,12 +104,10 @@ class PokemonData extends StatelessWidget {
 }
 
 Widget pokemonAbilitys(Ability ability) {
-  final bool hidden = ability.isHidden;
-
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: Text(
-      '${ability.ability.name}, ${hidden ? '(Ability is hidden)' : ''}',
+      ability.ability.name,
       style: const TextStyle(
         color: Color.fromRGBO(116, 116, 118, 1),
       ),
