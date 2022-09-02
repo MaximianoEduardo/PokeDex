@@ -1,17 +1,15 @@
 import 'package:app_pokedex/bloc/pokemon_specie_bloc.dart';
 import 'package:app_pokedex/common/capitalize.dart';
+import 'package:app_pokedex/common/loading.dart';
 import 'package:app_pokedex/data/repository.dart';
-import 'package:app_pokedex/models/pokemon_evolution.dart';
 import 'package:app_pokedex/models/pokemon_info.dart';
 import 'package:app_pokedex/models/pokemon_specie.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_about_tab.dart';
 import 'package:app_pokedex/screens/details/tabs/pokemon_stats_tab.dart';
 import 'package:app_pokedex/screens/details/widgets/pokemon_evolution.dart';
-import 'package:app_pokedex/screens/home/widgets/body_pokedex.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../widgets/pokemon_default_widget.dart';
 
@@ -143,7 +141,7 @@ class ScreenArguments {
 
 Widget getLoadingSpeciesDetails(PokemonSpecieBloc cubit, Pokedex pokemon) {
   cubit.getPokemonSpecie(pokemon.id.toString());
-  return const Text('Loading');
+  return const LoadingCustom();
 }
 
 Widget getPokemonAboutTab(
@@ -181,7 +179,7 @@ Widget consumerAbout(
 
 Widget setStateBack(PokemonSpecieBloc cubit, Pokedex pokemon) {
   cubit.getPokemonSpecie(pokemon.id.toString());
-  return const Text('data');
+  return const LoadingCustom();
 }
 
 Widget consumerEvolution(PokemonSpecieBloc cubitSpecie, Pokedex pokemon,
@@ -203,7 +201,7 @@ Widget consumerEvolution(PokemonSpecieBloc cubitSpecie, Pokedex pokemon,
               ? PokemonEvolutionWidget(
                   evolution: state.pokemonEvolution, pokemon: pokemon)
               : state is LoadingPokemonSpecieDetails
-                  ? const Text('Carregando')
+                  ? const LoadingCustom()
                   : Text('data, ${cubitSpecie.state}');
     },
   );
@@ -211,10 +209,10 @@ Widget consumerEvolution(PokemonSpecieBloc cubitSpecie, Pokedex pokemon,
 
 Widget getPokemonEvolutionTab(PokemonSpecieBloc cubit, String pokemonChainId) {
   cubit.getPokemonEvolution(pokemonChainId);
-  return const Text('data');
+  return const LoadingCustom();
 }
 
 Widget getPokemonEvolutionTabs(
     PokemonSpecieBloc cubit, Pokedex pokemon, String pokemonChainID) {
-  return Row();
+  return const LoadingCustom();
 }
