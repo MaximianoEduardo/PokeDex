@@ -32,6 +32,8 @@ class PokemonSpecieBloc extends Cubit<PokemonSpecieState> {
 
   Future getPokemonEvolution(String pokemonChainID) async {
     try {
+      emit(LoadingPokemonSpecieDetails());
+
       final pokemonEvolutionResponse =
           await _repository.getPokemonEvolution(pokemonChainID.toString());
 

@@ -138,7 +138,7 @@ class EvolutionDetail {
         "min_affection": minAffection,
         "min_beauty": minBeauty,
         "min_happiness": minHappiness,
-        "min_level": minLevel == null ? 0 : minLevel,
+        "min_level": minLevel ?? trigger.name,
         "needs_overworld_rain": needsOverworldRain,
         "party_species": partySpecies,
         "party_type": partyType,

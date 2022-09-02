@@ -29,5 +29,8 @@ class GetLevelUP extends StatelessWidget {
 }
 
 Widget checkLevel(dynamic minLevel) {
-  return (Text('(Level ${minLevel.toString()})'));
+  final String checkMin =
+      minLevel != null ? ' Level ${minLevel.toString()}' : ' use-item ';
+
+  return (Text('($checkMin)'));
 }
