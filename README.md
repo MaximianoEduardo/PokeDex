@@ -5,11 +5,14 @@ Projeto seguindo passos de como criar uma pokedex em Flutter. Apenas para estudo
 
 ## Screenshots
 
-![Home](screenshots/Home.jpeg "Home")
-![Pokedex Generation](screenshots/Generations.jpeg "Pokedex Generation")
-![Pokedex Sort](screenshots/Sort.jpeg "Pokedex Generation")
-![Pokemon Info - About](screenshots/PokemonAbout.jpeg "Pokemon Info - About")
-![Pokemon Info - Base Stats](screenshots/PokemonStats.jpeg "Pokemon Stats - Base Stats")
+<div>
+
+<img src="https://raw.githubusercontent.com/MaximianoEduardo/PokeDex/main/screenshots/Home.jpeg"  height="700">
+<img src="https://raw.githubusercontent.com/MaximianoEduardo/PokeDex/main/screenshots/Generations.jpeg"  height="700">
+<img src="https://raw.githubusercontent.com/MaximianoEduardo/PokeDex/main/screenshots/Sort.jpeg"  height="700">
+<img src="https://raw.githubusercontent.com/MaximianoEduardo/PokeDex/main/screenshots/PokemonAbout.jpeg"  height="700">
+<img src="https://raw.githubusercontent.com/MaximianoEduardo/PokeDex/main/screenshots/PokemonStats.jpeg"  height="700">
+</div>
 
 ## Funcionalidades
 
