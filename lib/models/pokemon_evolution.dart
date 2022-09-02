@@ -145,7 +145,7 @@ class EvolutionDetail {
         "relative_physical_stats": relativePhysicalStats,
         "time_of_day": timeOfDay,
         "trade_species": tradeSpecies,
-        "trigger": trigger.toMap(),
+        "trigger": trigger,
         "turn_upside_down": turnUpsideDown,
       };
 }
