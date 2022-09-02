@@ -20,7 +20,7 @@ class GetLevelUP extends StatelessWidget {
         ),
         ...evolutionDetails
             .map(
-              (e) => checkLevel(e.minLevel),
+              (e) => checkLevel(e.minLevel, e.item),
             )
             .toList(),
       ],
@@ -28,9 +28,11 @@ class GetLevelUP extends StatelessWidget {
   }
 }
 
-Widget checkLevel(dynamic minLevel) {
-  final String checkMin =
-      minLevel != null ? ' Level ${minLevel.toString()}' : ' use-item ';
+Widget checkLevel(dynamic minLevel, Species item) {
+  final String itemToUP = item.name;
+  final String checkMin = minLevel != null
+      ? ' Level ${minLevel.toString()}'
+      : ' Use-item - $itemToUP ';
 
   return (Text('($checkMin)'));
 }
